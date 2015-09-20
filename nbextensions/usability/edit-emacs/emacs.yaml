@@ -1,0 +1,7 @@
+Type: IPython Notebook Extension
+Name: edit-emacs
+Description: edit cells in emacs
+Link: readme.md
+Icon: icon.png
+Main: main.js
+Compatibility: 4.x
