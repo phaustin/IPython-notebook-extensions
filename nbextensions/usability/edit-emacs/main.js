@@ -36,7 +36,35 @@ define([
                     IPython.notebook.kernel.execute(cmd);
                     return false;
                 }
+        },
+        'ctrl-]': {
+            help    : 'refresh python',
+            help_index : 'zz',
+            handler : function (event) {
+                function handle_output(msg) {
+                    var ret = msg.content.text;
+                    IPython.notebook.get_selected_cell().set_text(ret);
+                }
+                var callback = {'output': handle_output};
+                var cmd = "f = open('temp.py', 'r');print(f.read())";
+                IPython.notebook.kernel.execute(cmd, {iopub: callback}, {silent: false});
+                return false;
             }
+        },
+        'ctrl-[': {
+            help    : 'refresh markdown',
+            help_index : 'zz',
+            handler : function (event) {
+                function handle_output(msg) {
+                    var ret = msg.content.text;
+                    IPython.notebook.get_selected_cell().set_text(ret);
+                }
+                var callback = {'output': handle_output};
+                var cmd = "f = open('temp.md', 'r');print(f.read())";
+                IPython.notebook.kernel.execute(cmd, {iopub: callback}, {silent: false});
+                return false;
+            }
+        }
     };
 
     var load_ipython_extension = function() {
